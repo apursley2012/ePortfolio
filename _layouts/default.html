@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Development ePortfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap');
+        
+        body {
+            background-color: #2a2a2a;
+            color: #ffffff;
+            font-family: 'Share Tech Mono', monospace;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        main {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        h1, h2, h3 {
+            color: #ccff00;
+            font-family: 'Share Tech Mono', monospace;
+            text-align: center;
+            text-shadow: 0 0 15px #ccff00, 0 0 25px #ccff00;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .intro-text {
+            font-family: 'Share Tech Mono', monospace;
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .terminal-window {
+            background-color: #c0c0c0;
+            padding: 0;
+            margin: 1.5rem auto;
+            border-radius: 0;
+            max-width: 900px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            box-shadow: 
+                inset 1px 1px 0 #dfdfdf,
+                inset -1px -1px 0 #808080,
+                0 0 15px rgba(0, 255, 136, 0.5);
+        }
+
+        .terminal-window:hover {
+            box-shadow: 
+                inset 1px 1px 0 #dfdfdf,
+                inset -1px -1px 0 #808080,
+                0 0 25px rgba(0, 255, 136, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .terminal-window::before {
+            content: "Code Review";
+            display: block;
+            background: #808080; /* Darker grey for title bar */
+            color: #000000;
+            font-family: 'MS Sans Serif', sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 4px;
+            margin: 0;
+            text-align: left;
+            border-bottom: 1px solid #404040;
+            position: relative;
+            /* Slightly raised title bar */
+            border-top: 1px solid #ffffff;
+            border-left: 1px solid #ffffff;
+            border-right: 1px solid #404040;
+        }
+
+        .terminal-window::after {
+            content: "🗕 🗗 ✖";
+            position: absolute;
+            top: 2px;
+            right: 4px;
+            color: #000000;
+            font-size: 10px;
+            font-family: 'MS Sans Serif', sans-serif;
+            letter-spacing: 2px;
+            /* More raised buttons */
+            background: #c0c0c0;
+            padding: 1px 2px;
+            border: 1px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+        }
+
+        .terminal-window code {
+            display: block;
+            background: #0a0a0a;
+            white-space: pre-wrap;
+            color: #ccff00;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.4;
+            tab-size: 4;
+            text-shadow: 0 0 5px #ccff00, 0 0 10px #ccff00;
+            padding: 1.5rem;
+            margin: 4px;
+            /* Proper inset grey border around terminal */
+            border: 2px solid;
+            border-color: #808080 #ffffff #ffffff #808080;
+            box-shadow: inset -1px -1px 0 #dfdfdf, inset 1px 1px 0 #404040;
+        }
+
+        .markdown-content {
+            background-color: #0a0a0a;
+            padding: 2rem;
+            margin: 2rem auto;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+            max-width: 900px;
+        }
+
+        .markdown-content h2, .markdown-content h3 {
+            text-align: left;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed #ccff00;
+            text-shadow: 0 0 10px #ccff00;
+        }
+
+        .markdown-content p, .markdown-content ul, .markdown-content ol, .markdown-content pre, .markdown-content code {
+            color: #ffffff;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .markdown-content a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+
+        .markdown-content a:hover {
+            text-decoration: underline;
+        }
+
+        .markdown-content ul, .markdown-content ol {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+
+        .markdown-content ul li::before {
+            content: "❯";
+            color: #ccff00;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            text-shadow: 0 0 5px #ccff00;
+        }
+
+        .markdown-content pre {
+            background-color: #1a1a1a;
+            padding: 1rem;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        .markdown-content code {
+            color: #ccff00;
+            background-color: #1a1a1a;
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            text-shadow: 0 0 5px #ccff00;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Welcome to My Software Development ePortfolio</h1>
+        
+        <div class="intro-text">
+            This is my Software Development ePortfolio site. Here you will find the projects and enhancements I have created while working toward my CS bachelor's in Software Development.
+        </div>
+
+        <div class="terminal-window">
+            <code>apursley2012@ePortfolio-PC:~$ cd Software-Dev-ePortfolio
+apursley2012@ePortfolio-PC:~/Software-Dev-ePortfolio$ python
+Python 3.11.4 (tags/v3.11.4)
+>>> # Open and read Code Review page
+>>> path = r"Software-Dev-ePortfolio/code-review.md"
+>>> file = open(path, "r")
+>>> print(file.read())
+Opening file: code-review.md ...
+<span style="color: #00ffff;">Click here to open Code Review</span></code>
+        </div>
+
+        <div class="terminal-window">
+            <code>apursley2012@ePortfolio-PC:~/Software-Dev-ePortfolio$ python
+Python 3.11.4 (tags/v3.11.4)
+>>> # Click to open the Project Art
+>>> import webbrowser
+>>> webbrowser.open("projects/artifacts.html")
+<span style="color: #00ffff;">Click here to open Project Artifacts</span></code>
+        </div>
+
+        <div class="markdown-content">
+            <h2>About This Portfolio</h2>
+            <p>This portfolio showcases my journey through software development, featuring various projects and code reviews that demonstrate my growth as a developer.</p>
+            
+            <h3>Technologies Used</h3>
+            <ul>
+            </ul>
+        </div>
+    </main>
+</body>
+</html>
